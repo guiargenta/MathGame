@@ -43,6 +43,8 @@ fun SecondPage(navController: NavController, category: String) {
     val score = remember { mutableStateOf(0) }
     val remainingTimeText = remember { mutableStateOf("30") }
     val myQuestion = remember { mutableStateOf("") }
+    val myAnswer = remember { mutableStateOf("") }
+    val isEnabled = remember { mutableStateOf(true) }
 
 
     systemUIController.setSystemBarsColor(colorResource(id = R.color.blue))
@@ -107,10 +109,36 @@ fun SecondPage(navController: NavController, category: String) {
 
                 Spacer(modifier = Modifier.height(30.dp))
 
-                TextForQuestion(text = myQuestion.value) {
+                TextForQuestion(text = myQuestion.value)
 
+                Spacer(modifier = Modifier.height(15.dp))
+
+                TextFieldForAnswer(text = myAnswer)
+
+                Spacer(modifier = Modifier.height(50.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+
+                    ButtonOkNext(
+                        buttonText = "OK",
+                        myOnClick = {
+                            isEnabled.value = false
+                        },
+                        isEnabled = isEnabled.value,
+                    )
+
+                    ButtonOkNext(
+                        buttonText = "NEXT",
+                        myOnClick = {
+                            isEnabled.value = true
+                        },
+                        isEnabled = true,
+                    )
                 }
-
             }
         }
     )

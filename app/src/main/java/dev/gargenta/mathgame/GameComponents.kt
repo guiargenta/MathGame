@@ -1,10 +1,14 @@
 package dev.gargenta.mathgame
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -57,5 +61,24 @@ fun TextFieldForAnswer(text: MutableState<String>) {
         shape = RoundedCornerShape(0),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
     )
+
+}
+
+@Composable
+fun ButtonOkNext(buttonText: String, myOnClick: () -> Unit, isEnabled: Boolean) {
+
+    Button(
+        onClick = myOnClick,
+        enabled = isEnabled,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.White
+        ),
+        shape = RoundedCornerShape(5.dp),
+        border = BorderStroke(2.dp, color = colorResource(id = R.color.blue)),
+        modifier = Modifier.width(150.dp)
+    ) {
+        Text(text = buttonText, fontSize = 24.sp, color = colorResource(id = R.color.blue))
+
+    }
 
 }
